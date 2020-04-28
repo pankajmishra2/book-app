@@ -1,11 +1,18 @@
 package com.spring.bookapp.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
+	
+	public User() {
+		
+	}
 	
 	public User(String userName, String password) {
 		this.userName = userName;
@@ -19,6 +26,9 @@ public class User {
 	private String userName;
 	
 	private String password;
+	
+	@OneToMany(mappedBy="user")
+	private List<Book> books;
 	
 	public Integer getId() {
 		return id;
@@ -42,6 +52,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
 
 }
